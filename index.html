@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorry Chitti</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f0f0;
+    }
+    #bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .content {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      max-width: 90%;
+    }
+    h1 {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      margin-top: 20px;
+      position: relative;
+      height: 100px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      position: absolute;
+      transition: all 0.5s ease; /* Smooth animation */
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .accepted {
+      background-color: #4CAF50;
+      color: white;
+      left: 20%;
+      top: 30px;
+    }
+    .not-accepted {
+      background-color: #f44336;
+      color: white;
+      left: 60%;
+      top: 30px;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <img id="bg" src="https://copilot.microsoft.com/th/id/BCO.b0213ad5-831e-4642-ace3-ec1729720680.png" alt="Teddy Bear Background" onload="showContent()">
+
+  <div class="content" id="contentBox">
+    <h1>Sorry My dear Chitti sailu for what happened,<br>please forgive me, I'm sorry.</h1>
+    <div class="buttons">
+      <button class="accepted" onclick="acceptSorry()">Sorry Accepted</button>
+      <button class="not-accepted" id="notBtn" onmouseover="moveButton()" onclick="rejectSorry()">Not Accepted</button>
+    </div>
+    <div class="message" id="messageBox"></div>
+  </div>
+
+  <script>
+    function showContent() {
+      document.getElementById('contentBox').style.display = 'block';
+    }
+
+    function acceptSorry() {
+      const msg = document.getElementById('messageBox');
+      msg.textContent = "Thank you Bujjiiiiii.";
+      msg.style.display = 'block';
+      msg.style.color = '#388e3c';
+    }
+
+    function rejectSorry() {
+      const msg = document.getElementById('messageBox');
+      msg.textContent = "Invalid selection. You should accept Vinnuu's sorry.";
+      msg.style.display = 'block';
+      msg.style.color = '#d32f2f';
+    }
+
+    function moveButton() {
+      const btn = document.getElementById('notBtn');
+      const container = document.querySelector('.buttons');
+      const acceptedBtn = document.querySelector('.accepted');
+
+      const maxX = container.offsetWidth - btn.offsetWidth;
+      const maxY = container.offsetHeight - btn.offsetHeight;
+
+      let newX, newY;
+      do {
+        newX = Math.floor(Math.random() * maxX);
+        newY = Math.floor(Math.random() * maxY);
+      } while (
+        Math.abs(newX - acceptedBtn.offsetLeft) < acceptedBtn.offsetWidth &&
+        Math.abs(newY - acceptedBtn.offsetTop) < acceptedBtn.offsetHeight
+      );
+
+      btn.style.left = `${newX}px`;
+      btn.style.top = `${newY}px`;
+    }
+  </script>
+</body>
+</html>
